@@ -1,0 +1,76 @@
+[gd_scene load_steps=36 format=2]
+
+[ext_resource path="res://Sword.gd" type="Script" id=1]
+[ext_resource path="res://attackr/l1_attackr_1.png" type="Texture" id=2]
+[ext_resource path="res://attackr/l1_attackr_2.png" type="Texture" id=3]
+[ext_resource path="res://attackr/l1_attackr_3.png" type="Texture" id=4]
+[ext_resource path="res://attackr/l1_attackr_4.png" type="Texture" id=5]
+[ext_resource path="res://attackr/l1_attackr_5.png" type="Texture" id=6]
+[ext_resource path="res://attackr/l1_attackr_6.png" type="Texture" id=7]
+[ext_resource path="res://attackr/l1_attackr_7.png" type="Texture" id=8]
+[ext_resource path="res://attackr/l1_attackr_8.png" type="Texture" id=9]
+[ext_resource path="res://attackb/l1_attackb_1.png" type="Texture" id=10]
+[ext_resource path="res://attackb/l1_attackb_2.png" type="Texture" id=11]
+[ext_resource path="res://attackb/l1_attackb_3.png" type="Texture" id=12]
+[ext_resource path="res://attackb/l1_attackb_4.png" type="Texture" id=13]
+[ext_resource path="res://attackb/l1_attackb_5.png" type="Texture" id=14]
+[ext_resource path="res://attackb/l1_attackb_6.png" type="Texture" id=15]
+[ext_resource path="res://attackb/l1_attackb_7.png" type="Texture" id=16]
+[ext_resource path="res://attackb/l1_attackb_8.png" type="Texture" id=17]
+[ext_resource path="res://attackl/l1_attackl_1.png" type="Texture" id=18]
+[ext_resource path="res://attackl/l1_attackl_2.png" type="Texture" id=19]
+[ext_resource path="res://attackl/l1_attackl_3.png" type="Texture" id=20]
+[ext_resource path="res://attackl/l1_attackl_4.png" type="Texture" id=21]
+[ext_resource path="res://attackl/l1_attackl_5.png" type="Texture" id=22]
+[ext_resource path="res://attackl/l1_attackl_6.png" type="Texture" id=23]
+[ext_resource path="res://attackl/l1_attackl_7.png" type="Texture" id=24]
+[ext_resource path="res://attackl/l1_attackl_8.png" type="Texture" id=25]
+[ext_resource path="res://attackf/l1_attackf_1.png" type="Texture" id=26]
+[ext_resource path="res://attackf/l1_attackf_2.png" type="Texture" id=27]
+[ext_resource path="res://attackf/l1_attackf_3.png" type="Texture" id=28]
+[ext_resource path="res://attackf/l1_attackf_4.png" type="Texture" id=29]
+[ext_resource path="res://attackf/l1_attackf_5.png" type="Texture" id=30]
+[ext_resource path="res://attackf/l1_attackf_6.png" type="Texture" id=31]
+[ext_resource path="res://attackf/l1_attackf_7.png" type="Texture" id=32]
+[ext_resource path="res://attackf/l1_attackf_8.png" type="Texture" id=33]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "AttackR",
+"speed": 24.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "AttackB",
+"speed": 24.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "AttackL",
+"speed": 24.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ) ],
+"loop": true,
+"name": "AttackF",
+"speed": 24.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 20.0
+
+[node name="Sword" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="AttackAnim" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "AttackL"
+frame = 4
+
+[node name="AttackArea" type="Area2D" parent="AttackAnim"]
+
+[node name="AttackCollider" type="CollisionShape2D" parent="AttackAnim/AttackArea"]
+position = Vector2( -9, 0 )
+shape = SubResource( 2 )
+[connection signal="animation_finished" from="AttackAnim" to="." method="_on_AttackAnim_animation_finished"]
